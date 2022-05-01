@@ -102,5 +102,14 @@ public class CallbackTest {
         String expected = "Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.";
         assertEquals(expected, actualText);
     }
-
+    @Test
+    public void shouldDontSendFormWithWrongTel() {
+        driver.findElement(By.cssSelector("[type = 'text']")).sendKeys("Мария Авдеева");
+        driver.findElement(By.cssSelector("[type = 'tel']")).sendKeys("89993321232");
+        driver.findElement(By.cssSelector(".checkbox__box")).click();
+        driver.findElement(By.cssSelector(".button")).click();
+        String actualText = driver.findElement(By.cssSelector(".input_invalid .input__sub")).getText().trim();
+        String expected = "Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.";
+        assertEquals(expected, actualText);
+    }
 }
