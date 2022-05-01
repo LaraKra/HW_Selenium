@@ -92,4 +92,15 @@ public class CallbackTest {
         String expected = "Поле обязательно для заполнения";
         assertEquals(expected, actualText);
     }
+    @Test
+    public void shouldDontSendFormWithWrongName() {
+        driver.findElement(By.cssSelector("[type = 'text']")).sendKeys("Olga Ivanova");
+        driver.findElement(By.cssSelector("[type = 'tel']")).sendKeys("+79993321232");
+        driver.findElement(By.cssSelector(".checkbox__box")).click();
+        driver.findElement(By.cssSelector(".button")).click();
+        String actualText = driver.findElement(By.cssSelector(".input_invalid .input__sub")).getText().trim();
+        String expected = "Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.";
+        assertEquals(expected, actualText);
+    }
+
 }
