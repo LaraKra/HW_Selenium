@@ -112,4 +112,15 @@ public class CallbackTest {
         String expected = "Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.";
         assertEquals(expected, actualText);
     }
+    @Test
+    public void shouldDontSendFormWithEmptyCheckBox() {
+        driver.findElement(By.cssSelector("[type = 'text']")).sendKeys("Мария Авдеева");
+        driver.findElement(By.cssSelector("[type = 'tel']")).sendKeys("+79012345678");
+        driver.findElement(By.cssSelector(".checkbox__box"));
+        driver.findElement(By.cssSelector(".button")).click();
+        String actualText = driver.findElement(By.cssSelector(".input_invalid .checkbox__text")).getText().trim();
+        String expected = "Я соглашаюсь с условиями обработки и использования моих персональных данных и разрешаю сделать запрос в бюро кредитных историй";
+        assertEquals(expected, actualText);
+    }
+
 }
