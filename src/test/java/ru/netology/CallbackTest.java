@@ -66,7 +66,7 @@ public class CallbackTest {
         driver.findElement(By.cssSelector("[type = 'tel']")).sendKeys("+79993321232");
         driver.findElement(By.cssSelector(".checkbox__box")).click();
         driver.findElement(By.cssSelector(".button")).click();
-        String actualText = driver.findElement(By.cssSelector(".input_invalid .input__sub")).getText().trim();
+        String actualText = driver.findElement(By.cssSelector("[data-test-id = 'order-success']")).getText().trim();
         String expected = "Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.";
         assertEquals(expected, actualText);
     }
